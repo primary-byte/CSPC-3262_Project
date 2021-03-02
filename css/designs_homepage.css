@@ -1,0 +1,52 @@
+body {
+    background-image: linear-gradient( 179.8deg,  rgba(59,59,59,1) 32.1%, rgba(187,187,187,1) 88.3% );
+}
+.logo {
+    background: rgb(134, 24, 134);
+    height: 40px;
+    width: 120px;
+}
+.menuBar {
+    font-size: 22px;
+    width: 750px;
+    height: 40px;
+}
+.plain {
+    text-decoration: none;
+    color: whitesmoke;
+}
+#mb_search:hover {
+    font-size: 25px;
+}
+#mb_howto:hover {
+    font-size: 25px;
+}
+#mb_youraccount:hover {
+    font-size: 25px;
+}
+#mb_help:hover {
+    font-size: 25px;
+}
+#mb_aboutus:hover {
+    font-size: 25px;
+}
+#login {
+    color: black;
+}
+.login_button {
+    width: 100px;
+    height: 50px;
+    border-radius: 20px 20px;
+    cursor: pointer;
+}
+.search_text {
+    width: 500px;
+    height: 50px;
+    font-size: 25px;
+}
+
+.search_submit {
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+}

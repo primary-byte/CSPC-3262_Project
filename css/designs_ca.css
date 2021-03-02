@@ -1,0 +1,17 @@
+.logo {
+    background: rgb(134, 24, 134);
+    height: 40px;
+    width: 120px;
+}
+body {
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+}
+.login_box {
+    background: white;
+    height: 400px;
+    width: 300px;
+    border-radius: 5%;
+}
+.plain {
+    text-decoration: none;
+}
