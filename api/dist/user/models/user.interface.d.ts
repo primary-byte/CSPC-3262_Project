@@ -9,5 +9,6 @@ export interface User {
 export declare enum UserRole {
     ADMIN = "admin",
     MODERATOR = "moderator",
-    BASIC_USER = "basic_user"
+    BASIC_USER = "basic_user",
+    USER = "USER"
 }

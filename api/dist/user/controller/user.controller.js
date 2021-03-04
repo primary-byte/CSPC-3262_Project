@@ -36,14 +36,18 @@ let UserController = class UserController {
     findOne(params) {
         return this.userServices.findOne(params.id);
     }
-    findAll() {
-        return this.userServices.findAll();
+    index(page = 1, limit = 10) {
+        limit = limit > 100 ? 100 : limit;
+        return this.userServices.paginate({ page, limit, route: 'http://localhost:3000/user' });
     }
     deleteOne(id) {
         return this.userServices.deleteOne(Number(id));
     }
     updateOne(id, user) {
         return this.userServices.updateOne(Number(id), user);
+    }
+    updateRoleOfUser(id, user) {
+        return this.userServices.updateRoleOfUser(Number(id), user);
     }
 };
 __decorate([
@@ -68,13 +72,12 @@ __decorate([
     __metadata("design:returntype", rxjs_1.Observable)
 ], UserController.prototype, "findOne", null);
 __decorate([
-    roles_decorator_1.hasRoles(user_interface_1.UserRole.ADMIN),
-    common_1.UseGuards(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     common_1.Get(),
+    __param(0, common_1.Query('page')), __param(1, common_1.Query('limit')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", rxjs_1.Observable)
-], UserController.prototype, "findAll", null);
+], UserController.prototype, "index", null);
 __decorate([
     common_1.Delete(':id'),
     __param(0, common_1.Param('id')),
@@ -89,6 +92,15 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", rxjs_1.Observable)
 ], UserController.prototype, "updateOne", null);
+__decorate([
+    roles_decorator_1.hasRoles(user_interface_1.UserRole.ADMIN),
+    common_1.UseGuards(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+    common_1.Put(':id/role'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", rxjs_1.Observable)
+], UserController.prototype, "updateRoleOfUser", null);
 UserController = __decorate([
     common_1.Controller('user'),
     __metadata("design:paramtypes", [user_service_1.UserService])

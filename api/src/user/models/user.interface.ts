@@ -9,9 +9,10 @@ export interface User {
     role?: UserRole;
 }
 
+
 export enum UserRole {
     ADMIN = 'admin',
     MODERATOR = 'moderator',
     BASIC_USER = 'basic_user',
-
+    USER = "USER"
 }

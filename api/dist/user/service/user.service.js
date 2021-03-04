@@ -31,6 +31,8 @@ const auth_service_1 = require("../../auth/services/auth.service");
 const typeorm_2 = require("typeorm");
 const user_entity_1 = require("../models/user.entity");
 const operators_1 = require("rxjs/operators");
+const user_interface_1 = require("../models/user.interface");
+const nestjs_typeorm_paginate_1 = require("nestjs-typeorm-paginate");
 let UserService = class UserService {
     constructor(userRepository, authService) {
         this.userRepository = userRepository;
@@ -43,7 +45,7 @@ let UserService = class UserService {
             newUser.username = user.username;
             newUser.email = user.email;
             newUser.password = passwordHash;
-            newUser.role = user.role;
+            newUser.role = user_interface_1.UserRole.USER;
             return rxjs_1.from(this.userRepository.save(newUser)).pipe(operators_1.map((user) => {
                 const { password } = user, result = __rest(user, ["password"]);
                 return result;
@@ -61,6 +63,12 @@ let UserService = class UserService {
         return rxjs_1.from(this.userRepository.find()).pipe(operators_1.map((users) => {
             users.forEach(function (v) { delete v.password; });
             return users;
+        }));
+    }
+    paginate(options) {
+        return rxjs_1.from(nestjs_typeorm_paginate_1.paginate(this.userRepository, options)).pipe(operators_1.map((usersPageable) => {
+            usersPageable.items.forEach(function (v) { delete v.password; });
+            return usersPageable;
         }));
     }
     deleteOne(id) {
