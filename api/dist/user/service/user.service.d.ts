@@ -12,6 +12,7 @@ export declare class UserService {
     findAll(): Observable<User[]>;
     deleteOne(id: number): Observable<any>;
     updateOne(id: number, user: User): Observable<any>;
+    updateRoleOfUser(id: number, user: User): Observable<any>;
     login(user: User): Observable<string>;
     validateUser(email: string, password: string): Observable<User>;
     findByMail(email: string): Observable<User>;

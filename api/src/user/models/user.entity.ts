@@ -1,4 +1,12 @@
+import { UseInterceptors } from "@nestjs/common";
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { UserController } from "../controller/user.controller";
+import { UserRole } from "./user.interface";
+
+
+
+
+
 @Entity()
 export class UserEntity{
 
@@ -16,6 +24,9 @@ export class UserEntity{
 
     @Column()
     password: string;
+
+    @Column({type: 'enum', enum: UserRole, default: UserRole.BASIC_USER})
+    role: UserRole;
 
     @BeforeInsert()
     emailToLowerCase() {

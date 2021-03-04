@@ -15,8 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const rxjs_1 = require("rxjs");
+const user_interface_1 = require("../models/user.interface");
 const user_service_1 = require("../service/user.service");
 const operators_1 = require("rxjs/operators");
+const roles_decorator_1 = require("../../auth/decorator/roles.decorator");
+const roles_guard_1 = require("../../auth/guards/roles.guard");
+const jwt_guard_1 = require("../../auth/guards/jwt-guard");
 let UserController = class UserController {
     constructor(userServices) {
         this.userServices = userServices;
@@ -50,7 +54,7 @@ __decorate([
     __metadata("design:returntype", rxjs_1.Observable)
 ], UserController.prototype, "create", null);
 __decorate([
-    common_1.Post(),
+    common_1.Post('login'),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -64,6 +68,8 @@ __decorate([
     __metadata("design:returntype", rxjs_1.Observable)
 ], UserController.prototype, "findOne", null);
 __decorate([
+    roles_decorator_1.hasRoles(user_interface_1.UserRole.ADMIN),
+    common_1.UseGuards(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     common_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

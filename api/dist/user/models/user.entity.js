@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserEntity = void 0;
 const typeorm_1 = require("typeorm");
+const user_interface_1 = require("./user.interface");
 let UserEntity = class UserEntity {
     emailToLowerCase() {
         this.email = this.email.toLowerCase();
@@ -36,6 +37,10 @@ __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "password", void 0);
+__decorate([
+    typeorm_1.Column({ type: 'enum', enum: user_interface_1.UserRole, default: user_interface_1.UserRole.BASIC_USER }),
+    __metadata("design:type", String)
+], UserEntity.prototype, "role", void 0);
 __decorate([
     typeorm_1.BeforeInsert(),
     __metadata("design:type", Function),

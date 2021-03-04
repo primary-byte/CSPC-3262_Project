@@ -43,6 +43,7 @@ let UserService = class UserService {
             newUser.username = user.username;
             newUser.email = user.email;
             newUser.password = passwordHash;
+            newUser.role = user.role;
             return rxjs_1.from(this.userRepository.save(newUser)).pipe(operators_1.map((user) => {
                 const { password } = user, result = __rest(user, ["password"]);
                 return result;
@@ -51,6 +52,7 @@ let UserService = class UserService {
     }
     findOne(id) {
         return rxjs_1.from(this.userRepository.findOne({ id })).pipe(operators_1.map((user) => {
+            console.log(user);
             const { password } = user, result = __rest(user, ["password"]);
             return result;
         }));
@@ -69,13 +71,16 @@ let UserService = class UserService {
         delete user.password;
         return rxjs_1.from(this.userRepository.update(id, user));
     }
+    updateRoleOfUser(id, user) {
+        return rxjs_1.from(this.userRepository.update(id, user));
+    }
     login(user) {
         return this.validateUser(user.email, user.password).pipe(operators_1.switchMap((user) => {
             if (user) {
                 return this.authService.generateJWT(user).pipe(operators_1.map((jwt) => jwt));
             }
             else {
-                return "Wrong Credentials";
+                return 'Wrong Credentials';
             }
         }));
     }

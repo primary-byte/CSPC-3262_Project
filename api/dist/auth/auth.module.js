@@ -10,12 +10,17 @@ exports.AuthModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const jwt_1 = require("@nestjs/jwt");
+const user_module_1 = require("../user/user.module");
+const jwt_guard_1 = require("./guards/jwt-guard");
+const jwt_strategy_1 = require("./guards/jwt-strategy");
+const roles_guard_1 = require("./guards/roles.guard");
 const auth_service_1 = require("./services/auth.service");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
     common_1.Module({
         imports: [
+            common_1.forwardRef(() => user_module_1.UserModule),
             jwt_1.JwtModule.registerAsync({
                 imports: [config_1.ConfigModule],
                 inject: [config_1.ConfigService],
@@ -25,7 +30,7 @@ AuthModule = __decorate([
                 })
             })
         ],
-        providers: [auth_service_1.AuthService],
+        providers: [auth_service_1.AuthService, roles_guard_1.RolesGuard, jwt_guard_1.JwtAuthGuard, jwt_strategy_1.JwtStrategy],
         exports: [auth_service_1.AuthService]
     })
 ], AuthModule);
