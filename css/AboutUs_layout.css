@@ -1,0 +1,111 @@
+*, **, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+body {
+    display: grid;
+    margin: 0px;
+    grid-template-rows: auto 1fr auto;
+}
+header, main, footer {
+    background: grey;
+}
+
+header {
+    grid-row: 1;
+    display: grid;
+    align-items: center;
+    padding: 20px 40px;
+}
+.logo {
+    grid-row: 1;
+    grid-column: 1;
+    font-size: 1em;
+    font-weight: bolder;
+    justify-self: left;
+}
+.menuBar {
+    grid-row:1;
+    grid-column: 2;
+    display: block;
+    justify-self: center;
+}
+ul {
+    padding-inline-start: 0;
+}
+li {
+    display: inline-flex;
+    font-size: 1em;
+    text-decoration: none;
+    justify-content: center;
+    align-content: center;
+    color: white;
+    padding: 0.5rem 2rem;
+}
+.profile {
+    grid-row: 1;
+    grid-column: 3;
+    justify-self: end;
+    padding: 20px 40px;
+
+}
+main {
+    grid-row: 2;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+footer {
+    grid-row: 3;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+.Gabriel, .Gary, .Janelle, .Joshua, .Nathan {
+    height:80%;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    background: white;
+    padding: 20px;
+    border-radius: 20px 20px;
+    box-shadow: 0 4px 12px black;
+}
+.Gabriel {
+    grid-row: 1;
+    grid-column: 1;
+}
+.Gary {
+    grid-row: 1;
+    grid-column: 2;
+}
+.Janelle {
+    grid-row: 1;
+    grid-column: 3;
+}
+.Joshua {
+    grid-row: 1;
+    grid-column: 4;
+}
+.Nathan {
+    grid-row: 1;
+    grid-column: 5;
+}
+
+p {
+    font-size: small;
+    
+}
+
+.Gabriel:hover,
+.Gary:hover,
+.Janelle:hover,
+.Joshua:hover,
+.Nathan:hover {
+    height: 85%;
+    width: 100%;
+}
